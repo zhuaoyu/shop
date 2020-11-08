@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="netModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="gys">
+          <Key>
+            <PropertyRef Name="gysid" />
+          </Key>
+          <Property Name="gysid" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="gysname" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="list">
+          <Key>
+            <PropertyRef Name="yonghuming" />
+          </Key>
+          <Property Name="yonghuming" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="mima" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sp">
+          <Key>
+            <PropertyRef Name="spid" />
+          </Key>
+          <Property Name="spid" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="spname" Type="varchar" MaxLength="10" />
+          <Property Name="spzlid" Type="varchar" MaxLength="10" />
+          <Property Name="spgysid" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="zl">
+          <Key>
+            <PropertyRef Name="zlid" />
+          </Key>
+          <Property Name="zlid" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="zlname" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK__sp__spgysid__1273C1CD">
+          <End Role="gys" Type="Self.gys" Multiplicity="0..1" />
+          <End Role="sp" Type="Self.sp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gys">
+              <PropertyRef Name="gysid" />
+            </Principal>
+            <Dependent Role="sp">
+              <PropertyRef Name="spgysid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sp__spzlid__117F9D94">
+          <End Role="zl" Type="Self.zl" Multiplicity="0..1" />
+          <End Role="sp" Type="Self.sp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zl">
+              <PropertyRef Name="zlid" />
+            </Principal>
+            <Dependent Role="sp">
+              <PropertyRef Name="spzlid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="netModelStoreContainer">
+          <EntitySet Name="gys" EntityType="Self.gys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="list" EntityType="Self.list" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sp" EntityType="Self.sp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zl" EntityType="Self.zl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__sp__spgysid__1273C1CD" Association="Self.FK__sp__spgysid__1273C1CD">
+            <End Role="gys" EntitySet="gys" />
+            <End Role="sp" EntitySet="sp" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sp__spzlid__117F9D94" Association="Self.FK__sp__spzlid__117F9D94">
+            <End Role="zl" EntitySet="zl" />
+            <End Role="sp" EntitySet="sp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="netModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="gys">
+          <Key>
+            <PropertyRef Name="gysid" />
+          </Key>
+          <Property Name="gysid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gysname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sp" Relationship="Self.FK__sp__spgysid__1273C1CD" FromRole="gys" ToRole="sp" />
+        </EntityType>
+        <EntityType Name="list">
+          <Key>
+            <PropertyRef Name="yonghuming" />
+          </Key>
+          <Property Name="yonghuming" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mima" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sp">
+          <Key>
+            <PropertyRef Name="spid" />
+          </Key>
+          <Property Name="spid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="spname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="spzlid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="spgysid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="gys" Relationship="Self.FK__sp__spgysid__1273C1CD" FromRole="sp" ToRole="gys" />
+          <NavigationProperty Name="zl" Relationship="Self.FK__sp__spzlid__117F9D94" FromRole="sp" ToRole="zl" />
+        </EntityType>
+        <EntityType Name="zl">
+          <Key>
+            <PropertyRef Name="zlid" />
+          </Key>
+          <Property Name="zlid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zlname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sp" Relationship="Self.FK__sp__spzlid__117F9D94" FromRole="zl" ToRole="sp" />
+        </EntityType>
+        <Association Name="FK__sp__spgysid__1273C1CD">
+          <End Role="gys" Type="Self.gys" Multiplicity="0..1" />
+          <End Role="sp" Type="Self.sp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gys">
+              <PropertyRef Name="gysid" />
+            </Principal>
+            <Dependent Role="sp">
+              <PropertyRef Name="spgysid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sp__spzlid__117F9D94">
+          <End Role="zl" Type="Self.zl" Multiplicity="0..1" />
+          <End Role="sp" Type="Self.sp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zl">
+              <PropertyRef Name="zlid" />
+            </Principal>
+            <Dependent Role="sp">
+              <PropertyRef Name="spzlid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="netEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="gys" EntityType="Self.gys" />
+          <EntitySet Name="list" EntityType="Self.list" />
+          <EntitySet Name="sp" EntityType="Self.sp" />
+          <EntitySet Name="zl" EntityType="Self.zl" />
+          <AssociationSet Name="FK__sp__spgysid__1273C1CD" Association="Self.FK__sp__spgysid__1273C1CD">
+            <End Role="gys" EntitySet="gys" />
+            <End Role="sp" EntitySet="sp" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sp__spzlid__117F9D94" Association="Self.FK__sp__spzlid__117F9D94">
+            <End Role="zl" EntitySet="zl" />
+            <End Role="sp" EntitySet="sp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="netModelStoreContainer" CdmEntityContainer="netEntities1">
+          <EntitySetMapping Name="gys">
+            <EntityTypeMapping TypeName="netModel.gys">
+              <MappingFragment StoreEntitySet="gys">
+                <ScalarProperty Name="gysid" ColumnName="gysid" />
+                <ScalarProperty Name="gysname" ColumnName="gysname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="list">
+            <EntityTypeMapping TypeName="netModel.list">
+              <MappingFragment StoreEntitySet="list">
+                <ScalarProperty Name="yonghuming" ColumnName="yonghuming" />
+                <ScalarProperty Name="mima" ColumnName="mima" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sp">
+            <EntityTypeMapping TypeName="netModel.sp">
+              <MappingFragment StoreEntitySet="sp">
+                <ScalarProperty Name="spid" ColumnName="spid" />
+                <ScalarProperty Name="spname" ColumnName="spname" />
+                <ScalarProperty Name="spzlid" ColumnName="spzlid" />
+                <ScalarProperty Name="spgysid" ColumnName="spgysid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zl">
+            <EntityTypeMapping TypeName="netModel.zl">
+              <MappingFragment StoreEntitySet="zl">
+                <ScalarProperty Name="zlid" ColumnName="zlid" />
+                <ScalarProperty Name="zlname" ColumnName="zlname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

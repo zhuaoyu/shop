@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="netModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="gys">
+    <Key>
+      <PropertyRef Name="gysid" />
+    </Key>
+    <Property Name="gysid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gysname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="sp" Relationship="Self.FK__sp__spgysid__1273C1CD" FromRole="gys" ToRole="sp" />
+  </EntityType>
+  <EntityType Name="list">
+    <Key>
+      <PropertyRef Name="yonghuming" />
+    </Key>
+    <Property Name="yonghuming" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mima" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sp">
+    <Key>
+      <PropertyRef Name="spid" />
+    </Key>
+    <Property Name="spid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="spname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="spzlid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="spgysid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gys" Relationship="Self.FK__sp__spgysid__1273C1CD" FromRole="sp" ToRole="gys" />
+    <NavigationProperty Name="zl" Relationship="Self.FK__sp__spzlid__117F9D94" FromRole="sp" ToRole="zl" />
+  </EntityType>
+  <EntityType Name="zl">
+    <Key>
+      <PropertyRef Name="zlid" />
+    </Key>
+    <Property Name="zlid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="zlname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="sp" Relationship="Self.FK__sp__spzlid__117F9D94" FromRole="zl" ToRole="sp" />
+  </EntityType>
+  <Association Name="FK__sp__spgysid__1273C1CD">
+    <End Role="gys" Type="Self.gys" Multiplicity="0..1" />
+    <End Role="sp" Type="Self.sp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gys">
+        <PropertyRef Name="gysid" />
+      </Principal>
+      <Dependent Role="sp">
+        <PropertyRef Name="spgysid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__sp__spzlid__117F9D94">
+    <End Role="zl" Type="Self.zl" Multiplicity="0..1" />
+    <End Role="sp" Type="Self.sp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zl">
+        <PropertyRef Name="zlid" />
+      </Principal>
+      <Dependent Role="sp">
+        <PropertyRef Name="spzlid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="netEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="gys" EntityType="Self.gys" />
+    <EntitySet Name="list" EntityType="Self.list" />
+    <EntitySet Name="sp" EntityType="Self.sp" />
+    <EntitySet Name="zl" EntityType="Self.zl" />
+    <AssociationSet Name="FK__sp__spgysid__1273C1CD" Association="Self.FK__sp__spgysid__1273C1CD">
+      <End Role="gys" EntitySet="gys" />
+      <End Role="sp" EntitySet="sp" />
+    </AssociationSet>
+    <AssociationSet Name="FK__sp__spzlid__117F9D94" Association="Self.FK__sp__spzlid__117F9D94">
+      <End Role="zl" EntitySet="zl" />
+      <End Role="sp" EntitySet="sp" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

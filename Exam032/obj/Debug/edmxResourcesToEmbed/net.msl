@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="netModelStoreContainer" CdmEntityContainer="netEntities1">
+    <EntitySetMapping Name="gys">
+      <EntityTypeMapping TypeName="netModel.gys">
+        <MappingFragment StoreEntitySet="gys">
+          <ScalarProperty Name="gysid" ColumnName="gysid" />
+          <ScalarProperty Name="gysname" ColumnName="gysname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="list">
+      <EntityTypeMapping TypeName="netModel.list">
+        <MappingFragment StoreEntitySet="list">
+          <ScalarProperty Name="yonghuming" ColumnName="yonghuming" />
+          <ScalarProperty Name="mima" ColumnName="mima" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sp">
+      <EntityTypeMapping TypeName="netModel.sp">
+        <MappingFragment StoreEntitySet="sp">
+          <ScalarProperty Name="spid" ColumnName="spid" />
+          <ScalarProperty Name="spname" ColumnName="spname" />
+          <ScalarProperty Name="spzlid" ColumnName="spzlid" />
+          <ScalarProperty Name="spgysid" ColumnName="spgysid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zl">
+      <EntityTypeMapping TypeName="netModel.zl">
+        <MappingFragment StoreEntitySet="zl">
+          <ScalarProperty Name="zlid" ColumnName="zlid" />
+          <ScalarProperty Name="zlname" ColumnName="zlname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
